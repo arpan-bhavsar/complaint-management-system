@@ -15,8 +15,8 @@ const jwt = require('jsonwebtoken');
 app.use(express.json());
 app.use(cors({
   origin: [
-    'http://localhost:5173', // Keeps local development working
-    'https://stem-sigma-plum.vercel.app' // Allows your live Vercel app!
+    'http://localhost:5173', 
+    'https://complaint-management-system-sigma-plum.vercel.app' // Updated to match your exact Vercel URL
   ],
   credentials: true
 }));
