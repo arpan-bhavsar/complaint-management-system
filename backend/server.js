@@ -13,7 +13,13 @@ const jwt = require('jsonwebtoken');
 
 // Middleware: Allows our app to accept JSON data and talk to the React frontend
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Keeps local development working
+    'https://stem-sigma-plum.vercel.app' // Allows your live Vercel app!
+  ],
+  credentials: true
+}));
 
 const authRoutes = require('./routes/authRoutes');
 const complaintRoutes = require('./routes/complaintRoutes');
