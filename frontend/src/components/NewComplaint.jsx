@@ -38,7 +38,7 @@ function NewComplaint() {
         submitData.append('image', image);
       }
 
-      await axios.post('http://localhost:5000/api/complaints', submitData, {
+      await axios.post('https://complaint-management-system-backend-caok.onrender.com//api/complaints', submitData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       

@@ -22,7 +22,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/complaints');
+        const response = await axios.get('https://complaint-management-system-backend-caok.onrender.com//api/complaints');
         setComplaints(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -39,7 +39,7 @@ function Dashboard() {
     const token = localStorage.getItem('token');
 
     // 2. Pass the token in the 'auth' object when connecting
-    const socket = io('http://localhost:5000', {
+    const socket = io('https://complaint-management-system-backend-caok.onrender.com/', {
       auth: {
         token: token
       }
@@ -68,7 +68,7 @@ function Dashboard() {
 
   const updateStatus = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/complaints/${id}`, { status: newStatus, adminId: currentUser.id });
+      await axios.put(`https://complaint-management-system-backend-caok.onrender.com//api/complaints/${id}`, { status: newStatus, adminId: currentUser.id });
       setComplaints(complaints.map(ticket => 
         ticket._id === id ? { ...ticket, status: newStatus } : ticket
       ));
@@ -80,7 +80,7 @@ function Dashboard() {
   const deleteTicket = async (id) => {
     if (!window.confirm('Are you sure you want to delete this ticket?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/complaints/${id}`, { data: { adminId: currentUser.id } });
+      await axios.delete(`https://complaint-management-system-backend-caok.onrender.com//api/complaints/${id}`, { data: { adminId: currentUser.id } });
       setComplaints(complaints.filter(ticket => ticket._id !== id));
     } catch (error) {
       alert('Failed to delete ticket.');
@@ -89,7 +89,7 @@ function Dashboard() {
 
   const viewHistory = async (ticket) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/complaints/${ticket._id}/history`);
+      const response = await axios.get(`https://complaint-management-system-backend-caok.onrender.com//api/complaints/${ticket._id}/history`);
       setHistoryLog(response.data);
       setSelectedTicketTitle(ticket.title);
       setIsHistoryModalOpen(true);
